@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./ERC20.sol";
-import "./IERC20.sol";
-import "./SafeERC20.sol";
-import "./EnumerableSet.sol";
-import "./SafeMath.sol";
-import "./Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "./YinToken.sol";
+// import "./EnumerableSet.sol";
 
 interface IMigratorChef {
     function migrate(IERC20 token) external returns (IERC20);
@@ -57,7 +57,7 @@ contract MasterChef is Ownable {
         uint256 _yinPerBlock,
         uint256 _startBlock,
         uint256 _bonusEndBlock
-    ) public {
+    ) {
         yin = _yin;
         devaddr = _devaddr;
         yinPerBlock = _yinPerBlock;

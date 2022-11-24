@@ -40,5 +40,13 @@ module.exports = {
     // Obtain one at https://etherscan.io/
     apiKey: process.env.API_KEY,
   },
-  solidity: "0.6.12",
+  solidity: {
+    version: "0.8.9",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  },
 };
