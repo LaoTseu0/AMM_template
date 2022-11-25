@@ -25,13 +25,13 @@ async function main() {
 
   // const lockedAmount = hre.ethers.utils.parseEther("1");
 
-  const Lock = await hre.ethers.getContractFactory("CakeToken");
-  const lock = await Lock.deploy();
+  const Yin = await hre.ethers.getContractFactory("YinToken");
+  const yin = await Yin.deploy();
 
-  await lock.deployed();
+  await yin.deployed();
 
   console.log(
-    `Lock deployed to ${lock.address}`
+    `YinToken deployed to ${yin.address}`
   );
 }
 
