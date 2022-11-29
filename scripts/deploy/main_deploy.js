@@ -1,7 +1,9 @@
 const registerSubsidy = require("../../utils/registerSubsidy");
 const hre = require("hardhat");
+const { init } = require("../init/init");
 
 const devAddr = "0x2bf977F1D8F6E3bC281CFF257c42A775bE42d7B0";
+// const devAddr = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
 
 async function main() {
   const [deployer] = await ethers.getSigners();
@@ -20,13 +22,13 @@ async function main() {
 
   console.log(`Yang deployed to ${yang.address}`);
 
-  const MasterChef = await hre.ethers.getContractFactory("MasterChef");
+  const MasterChef = await hre.ethers.getContractFactory("MasterChefV2");
   const masterChef = await MasterChef.deploy(
     yin.address,
     devAddr,
+    devAddr,
     "1000000000000000000000",
-    24884097,
-    25889676
+    24884097
   );
 
   await masterChef.deployed();
@@ -36,6 +38,8 @@ async function main() {
   await registerSubsidy(yin.address, deployer);
   await registerSubsidy(yang.address, deployer);
   await registerSubsidy(masterChef.address, deployer);
+
+  await init(yin.address, yang.address, masterChef.address, devAddr)
 }
 
 // We recommend this pattern to be able to use async/await everywhere
